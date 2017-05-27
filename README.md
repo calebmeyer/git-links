@@ -1,5 +1,9 @@
 # git-links package
+This package provides a quick way to get a link to any piece of code hosted in github.
 
-A short description of your package.
+TODO: Screenshot
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+## Install
+`apm install git-links`
+
+## Usage
