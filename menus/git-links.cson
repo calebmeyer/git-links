@@ -14,7 +14,7 @@
       'submenu': [
         {
           'label': 'Get Link for Current Line'
-          'command': 'git-links:current-line'
+          'command': 'git-links:copy-link-for-current-line'
         }
       ]
     ]

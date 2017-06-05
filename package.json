@@ -9,7 +9,7 @@
     "url"
   ],
   "activationCommands": {
-    "atom-workspace": "git-links:current-line"
+    "atom-workspace": "git-links:copy-link-for-current-line"
   },
   "repository": "https://github.com/calebmeyer/git-links",
   "license": "MIT",
