@@ -1,7 +1,7 @@
 {
   "name": "git-links",
   "main": "./lib/git-links",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Get a link to any code hosted in github",
   "keywords": [
     "git",
@@ -13,7 +13,6 @@
       "git-links:copy-absolute-link-for-current-line",
       "git-links:copy-absolute-link-for-current-file"
     ]
-
   },
   "repository": "https://github.com/calebmeyer/git-links",
   "license": "MIT",
