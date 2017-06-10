@@ -11,8 +11,6 @@ module.exports = GitLinks =
     # Register commands
     @subscriptions.add atom.commands.add 'atom-workspace',
       'git-links:copy-absolute-link-for-current-line': => @currentLine()
-
-    @subscriptions.add atom.commands.add 'atom-workspace',
       'git-links:copy-absolute-link-for-current-file': => @currentFile()
 
   deactivate: ->
@@ -23,7 +21,7 @@ module.exports = GitLinks =
     if editor = atom.workspace.getActiveTextEditor()
       cursor = editor.getCursors()[0]
       line = cursor.getBufferRow() + 1 # 0 based list of rows, 1 based file lines
-      filePath = editor.getBuffer().getPath().replace(/\\/g, '/')
+      filePath = @forwardFilePath()
       self = this
       # callback hell, here we come
       self.git(['config', '--get', 'remote.origin.url'], (code, stdout, errors) ->
@@ -45,7 +43,7 @@ module.exports = GitLinks =
   currentFile: ->
     # there is no current file if we don't have an active text editor
     if editor = atom.workspace.getActiveTextEditor()
-      filePath = @filePath().replace(/\\/g, '/')
+      filePath = @forwardFilePath()
       self = this
       # callback hell, here we come
       self.git(['config', '--get', 'remote.origin.url'], (code, stdout, errors) ->
@@ -66,6 +64,9 @@ module.exports = GitLinks =
   # HELPER METHODS here on down
   filePath: -> atom.workspace.getActiveTextEditor().getBuffer().getPath()
   fileDirectory: -> Path.dirname(@filePath())
+
+  # file's path, but with forward slashes like urls use
+  forwardFilePath: -> @filePath().replace(/\\/g, '/')
 
   # args should be an array of strings
   # for `git reset --hard`, the array would be ['reset', '--hard']
