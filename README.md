@@ -14,18 +14,19 @@ or
 1. Click install
 
 ## Usage
-Define your own keymap, or use Ctrl(command)+Shift+P to execute one of the commands
+Define your own keymap, or use Ctrl(command)+Shift+P (the command palette) to execute one of the commands
 
 ### Commands
 NOTE: These are subject to change at any time until this package reaches 1.0
 
 |Name|Description|
 |----|-----------|
-|`git-links:copy-link-for-current-line`|Copies a link to your clipboard which represents the current line of code in Github|
+|`git-links:copy-absolute-link-for-current-line`|Copies a link to your clipboard which represents the current line of code in Github|
+|`git-links:copy-absolute-link-for-current-file`|Copies a link to your clipboard which represents the current file in Github|
 
 ## Roadmap
 - [x] 0.1.0 Initial release, copy current line
-- [ ] 0.2.0 Copy current file
+- [x] 0.2.0 Copy current file
 - [ ] 0.3.0 Copy current commit
 - [ ] 0.4.0 Add relative commands (links to branches, rather than commits)
 - [ ] 0.5.0 Add indication that link was copied (maybe one of those green notification boxes?)
@@ -34,3 +35,10 @@ NOTE: These are subject to change at any time until this package reaches 1.0
 - [ ] 1.0.0 Clean up all the above into a nice package
 - [ ] 1.1.0 Add bitbucket support
 - [ ] 1.2.0 Add gitlab support
+
+## Contributing
+Contributions are always welcome!
+
+If you encounter a bug, please open an issue and [write a bug report](http://www.lee-dohm.com/2015/01/04/writing-good-bug-reports/).
+
+If you want to add a new feature or fix a bug, fork this repository and send a pull request.

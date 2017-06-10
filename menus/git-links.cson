@@ -13,8 +13,12 @@
       'label': 'git-links'
       'submenu': [
         {
-          'label': 'Get Link for Current Line'
-          'command': 'git-links:copy-link-for-current-line'
+          'label': 'Git Link for Current Line'
+          'command': 'git-links:copy-absolute-link-for-current-line'
+        },
+        {
+          'label': 'Git Link for Current File'
+          'command': 'git-links:copy-absolute-link-for-current-file'
         }
       ]
     ]

@@ -1,4 +1,5 @@
 {CompositeDisposable, BufferedProcess} = require 'atom'
+Path = require 'path'
 
 module.exports = GitLinks =
   subscriptions: null
@@ -7,8 +8,12 @@ module.exports = GitLinks =
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
 
-    # Register command that gets a link for the current line
-    @subscriptions.add atom.commands.add 'atom-workspace', 'git-links:copy-link-for-current-line': => @currentLine()
+    # Register commands
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'git-links:copy-absolute-link-for-current-line': => @currentLine()
+
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'git-links:copy-absolute-link-for-current-file': => @currentFile()
 
   deactivate: ->
     @subscriptions.dispose()
@@ -21,13 +26,13 @@ module.exports = GitLinks =
       filePath = editor.getBuffer().getPath().replace(/\\/g, '/')
       self = this
       # callback hell, here we come
-      self.git(['config', '--get', 'remote.origin.url'], (code, stdout) ->
+      self.git(['config', '--get', 'remote.origin.url'], (code, stdout, errors) ->
         repo = stdout.trim().replace(/\.git$/, '')
 
-        self.git(['log', '--pretty=oneline', '-1'], (code, stdout) ->
+        self.git(['log', '--pretty=oneline', '-1'], (code, stdout, errors) ->
           commitHash = stdout.split(' ')[0]
 
-          self.git(['rev-parse', '--show-toplevel'], (code, stdout) ->
+          self.git(['rev-parse', '--show-toplevel'], (code, stdout, errors) ->
             gitDirectory = stdout.trim()
             relativePath = filePath.replace(gitDirectory, '')
             link = repo + '/blob/' + commitHash + relativePath + '#L' + line
@@ -36,18 +41,51 @@ module.exports = GitLinks =
         )
       )
 
+  # duplication is better than the wrong abstraction - Sandi Metz
+  currentFile: ->
+    # there is no current file if we don't have an active text editor
+    if editor = atom.workspace.getActiveTextEditor()
+      filePath = @filePath().replace(/\\/g, '/')
+      self = this
+      # callback hell, here we come
+      self.git(['config', '--get', 'remote.origin.url'], (code, stdout, errors) ->
+        repo = stdout.trim().replace(/\.git$/, '')
+
+        self.git(['log', '--pretty=oneline', '-1'], (code, stdout, errors) ->
+          commitHash = stdout.split(' ')[0]
+
+          self.git(['rev-parse', '--show-toplevel'], (code, stdout, errors) ->
+            gitDirectory = stdout.trim()
+            relativePath = filePath.replace(gitDirectory, '')
+            link = repo + '/blob/' + commitHash + relativePath
+            atom.clipboard.write(link)
+          )
+        )
+      )
+
+  # HELPER METHODS here on down
+  filePath: -> atom.workspace.getActiveTextEditor().getBuffer().getPath()
+  fileDirectory: -> Path.dirname(@filePath())
+
   # args should be an array of strings
   # for `git reset --hard`, the array would be ['reset', '--hard']
   # callback is a function which will be called with the exit code and standard output once the command has finished
-  git: (args, callback) ->
+  # cwd is the current working directory to call git in (defaults to current file's directory)
+  git: (args, callback, cwd) ->
+    cwd = @fileDirectory() unless cwd?
     stdout = ''
+    errors = ''
     new BufferedProcess({
       command: 'git'
-      args,
+      args
+      options: {cwd}
       stdout: (output) ->
         console.log(output)
         stdout += output
+      stderr: (errorOutput) ->
+        console.error(errorOutput) if errorOutput?
+        errors += errorOutput
       exit: (code) ->
         console.log("`git #{args.join(' ')}` exited with status: #{code}")
-        callback(code, stdout)
+        callback(code, stdout, errors)
     })
