@@ -1,7 +1,7 @@
 # git-links
 Beta: command names may change, but no commands should disappear
 
-This package provides a quick way to get a link to any piece of code hosted in github.
+This package provides a quick way to get a link to any piece of code hosted in github or github enterprise.
 
 ## Install
 `apm install git-links`
@@ -23,11 +23,12 @@ NOTE: These are subject to change at any time until this package reaches 1.0
 |----|-----------|
 |`git-links:copy-absolute-link-for-current-line`|Copies a link to your clipboard which represents the current line of code in Github|
 |`git-links:copy-absolute-link-for-current-file`|Copies a link to your clipboard which represents the current file in Github|
+|`git-links:copy-absolute-link-for-current-commit`|Copies a link to your clipboard which represents the current commit in Github|
 
 ## Roadmap
 - [x] 0.1.0 Initial release, copy current line
 - [x] 0.2.0 Copy current file
-- [ ] 0.3.0 Copy current commit
+- [x] 0.3.0 Copy current commit
 - [ ] 0.4.0 Add relative commands (links to branches, rather than commits)
 - [ ] 0.5.0 Add indication that link was copied (maybe one of those green notification boxes?)
 - [ ] 0.6.0 Add commands to insert links into current buffer instead of copying them

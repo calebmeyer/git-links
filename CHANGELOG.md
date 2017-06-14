@@ -8,3 +8,8 @@
 * Added command to copy link for the current file
 * Added (internal) functions to get the current file/path
 * Updated git function to use the current path instead of relying on the environment (fixes #1)
+
+## 0.3.0 - Commit Support
+* Added command to copy link for the current commit
+* Updated regex to work for repos cloned using ssh
+* Updated regex to work for GitHub Enterprise
