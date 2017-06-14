@@ -25,7 +25,10 @@ module.exports = GitLinks =
       self = this
       # callback hell, here we come
       self.git(['config', '--get', 'remote.origin.url'], (code, stdout, errors) ->
-        repo = stdout.trim().replace(/\.git$/, '').replace(/^git@github\.com:/, 'https://github.com/')
+        repo = stdout.trim()
+          .replace(/^git@/, 'https://')
+          .replace(/\.com:/, '.com/')
+          .replace(/\.git$/, '')
 
         self.git(['log', '--pretty=oneline', '-1'], (code, stdout, errors) ->
           commitHash = stdout.split(' ')[0]
@@ -47,7 +50,10 @@ module.exports = GitLinks =
       self = this
       # callback hell, here we come
       self.git(['config', '--get', 'remote.origin.url'], (code, stdout, errors) ->
-        repo = stdout.trim().replace(/\.git$/, '').replace(/^git@github\.com:/, 'https://github.com/')
+        repo = stdout.trim()
+          .replace(/^git@/, 'https://')
+          .replace(/\.com:/, '.com/')
+          .replace(/\.git$/, '')
 
         self.git(['log', '--pretty=oneline', '-1'], (code, stdout, errors) ->
           commitHash = stdout.split(' ')[0]
