@@ -13,3 +13,6 @@
 * Added command to copy link for the current commit
 * Updated regex to work for repos cloned using ssh
 * Updated regex to work for GitHub Enterprise
+
+## 0.3.1 - bugfix
+* There was an issue with the indentation in git-links.coffee. That's been fixed.
