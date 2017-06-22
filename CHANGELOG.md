@@ -16,3 +16,6 @@
 
 ## 0.3.1 - bugfix
 * There was an issue with the indentation in git-links.coffee. That's been fixed.
+
+## 0.3.2 - bugfix again
+* Missed adding the commit command to the entry points. This means you'd have to run another command first. This is now fixed.
