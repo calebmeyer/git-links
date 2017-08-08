@@ -30,7 +30,7 @@ NOTE: These are subject to change at any time until this package reaches 1.0
 - [x] 0.2.0 Copy current file
 - [x] 0.3.0 Copy current commit
 - [ ] 0.4.0 Add relative commands (links to branches, rather than commits)
-- [ ] 0.5.0 Add indication that link was copied (maybe one of those green notification boxes?)
+- [x] 0.5.0 Add indication that link was copied (completed ahead of schedule)
 - [ ] 0.6.0 Add commands to insert links into current buffer instead of copying them
 - [ ] 0.7.0 Add ability to point to a specific git instead of just using `git` and expecting the shell to figure it out
 - [ ] 1.0.0 Clean up all the above into a nice package
