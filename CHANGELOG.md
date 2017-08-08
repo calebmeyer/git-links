@@ -19,3 +19,5 @@
 
 ## 0.3.2 - bugfix again
 * Missed adding the commit command to the entry points. This means you'd have to run another command first. This is now fixed.
+
+## 0.3.3 - Added notifications
