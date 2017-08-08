@@ -1,7 +1,7 @@
 {
   "name": "git-links",
   "main": "./lib/git-links",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Get a link to any code hosted in github",
   "keywords": [
     "git",
