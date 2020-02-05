@@ -21,3 +21,8 @@
 * Missed adding the commit command to the entry points. This means you'd have to run another command first. This is now fixed.
 
 ## 0.3.3 - Added notifications
+
+## 0.3.4 - Escape Whitespace
+
+* Whitespace In Paths were previously not escaped, breaking links when repositories has spaces in some filenames
+  this is now fixed
