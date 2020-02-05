@@ -1,8 +1,8 @@
 {
-  "name": "git-links",
+  "name": "git-links-plus",
   "main": "./lib/git-links",
-  "version": "0.3.3",
-  "description": "Get a link to any code hosted in github",
+  "version": "0.3.5",
+  "description": "Get a link to any code hosted in github. Previously maintained by calebmeyer",
   "keywords": [
     "git",
     "link",
@@ -15,7 +15,7 @@
       "git-links:copy-absolute-link-for-current-commit"
     ]
   },
-  "repository": "https://github.com/calebmeyer/git-links",
+  "repository": "https://github.com/mstr3336/git-links",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

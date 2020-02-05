@@ -37,6 +37,7 @@ module.exports = GitLinks =
           self.git(['rev-parse', '--show-toplevel'], (code, stdout, errors) ->
             gitDirectory = stdout.trim()
             relativePath = filePath.replace(gitDirectory, '')
+            relativePath = encodeURI(relativePath)
             link = repo + '/blob/' + commitHash + relativePath + '#L' + line
             atom.clipboard.write(link)
             atom.notifications.addInfo('Copied link for current line to clipboard', detail: link)
@@ -63,6 +64,7 @@ module.exports = GitLinks =
           self.git(['rev-parse', '--show-toplevel'], (code, stdout, errors) ->
             gitDirectory = stdout.trim()
             relativePath = filePath.replace(gitDirectory, '')
+            relativePath = encodeURI(relativePath)
             link = repo + '/blob/' + commitHash + relativePath
             atom.clipboard.write(link)
             atom.notifications.addInfo('Copied link for current file to clipboard', detail: link)
